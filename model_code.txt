@@ -1,0 +1,46 @@
+# Import deep learning resources from Keras
+from keras.models import Sequential
+from keras.layers import Convolution2D, MaxPooling2D, Dropout
+from keras.layers import Flatten, Dense
+from keras.layers import GlobalAveragePooling2D
+
+
+## TODO: Specify a CNN architecture
+# Your model should accept 96x96 pixel graysale images in
+# It should have a fully-connected output layer with 30 values (2 for each facial keypoint)
+
+model = Sequential()
+
+model.add(Convolution2D(filters=16, kernel_size=2, padding='same', activation='relu', 
+                        input_shape=(96, 96, 1)))
+model.add(MaxPooling2D(pool_size=2))
+model.add(Dropout(0.2))
+
+model.add(Convolution2D(filters=32, kernel_size=2, padding='same', activation='relu'))
+model.add(MaxPooling2D(pool_size=2))
+model.add(Dropout(0.2))
+
+model.add(Convolution2D(filters=64, kernel_size=2, padding='same', activation='relu'))
+model.add(MaxPooling2D(pool_size=2))
+model.add(Dropout(0.2))
+
+model.add(Convolution2D(filters=128, kernel_size=2, padding='same', activation='relu'))
+model.add(MaxPooling2D(pool_size=2))
+model.add(Dropout(0.2))
+
+#model.add(Convolution2D(filters=256, kernel_size=2, padding='same', activation='relu'))
+#model.add(MaxPooling2D(pool_size=2))
+#model.add(Dropout(0.2))
+
+#model.add(GlobalAveragePooling2D())
+
+model.add(Flatten())
+model.add(Dense(500, activation='relu'))
+model.add(Dropout(0.2))
+
+
+model.add(Dense(30, activation='softmax'))
+
+
+# Summarize the model
+model.summary()

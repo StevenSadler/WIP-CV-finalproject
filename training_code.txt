@@ -1,0 +1,12 @@
+from keras.optimizers import SGD, RMSprop, Adagrad, Adadelta, Adam, Adamax, Nadam
+
+## TODO: Compile the model
+model.compile(loss='categorical_crossentropy', optimizer='adamax', 
+                  metrics=['accuracy'])
+
+## TODO: Train the model
+history = model.fit(X_train, y_train, batch_size=32, epochs=120,
+          validation_split=0.2, verbose=2, shuffle=True)
+
+## TODO: Save the model as model.h5
+model.save('my_model.h5')
